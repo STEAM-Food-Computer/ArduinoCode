@@ -1,7 +1,7 @@
-#include "GrowLight.h"
+#include "WaterPump.h"
 
 
-GrowLight::GrowLight(char pinNum, int _interval) {
+WaterPump::WaterPump(char pinNum, int _interval) {
     interval = _interval;
     pinNumber = pinNum;
     pinMode(pinNumber, OUTPUT);
@@ -10,21 +10,21 @@ GrowLight::GrowLight(char pinNum, int _interval) {
     stopTime = 0;
 }
 
-void GrowLight::on() {
+void WaterPump::on() {
     digitalWrite(pinNumber, HIGH);
     pinState = true;
 }
 
-void GrowLight::off() {
+void WaterPump::off() {
     digitalWrite(pinNumber, LOW);
     pinState = false;
 }
 
-void GrowLight::changeInterval(int newInterval) {
+void WaterPump::changeInterval(int newInterval) {
     interval = newInterval;
 }
 
-void GrowLight::strobe() {
+void WaterPump::strobe() {
     if (stopTime <= millis()) {
         if(pinState) this->off();
         else this->on();
