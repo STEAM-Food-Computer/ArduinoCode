@@ -1,6 +1,4 @@
 #include "GrowLight.h"
-#include "HardwareSerial.h" //Arduino Hardware Library
-#include "WProgram.h" //Core Wiring API
 
 
 GrowLight::GrowLight( int pinNum, int _interval) {
@@ -27,9 +25,9 @@ void GrowLight::changeInterval(int newInterval) {
 }
 
 void GrowLight::strobe() {
-    if (stopTime =< millis()) {
-        if(pinState) this.off();
-        else this.on();
+    if (stopTime <= millis()) {
+        if(pinState) this->off();
+        else this->on();
         stopTime = millis() + interval;
     }
 }
