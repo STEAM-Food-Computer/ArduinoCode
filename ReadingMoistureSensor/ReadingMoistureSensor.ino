@@ -1,10 +1,3 @@
-#include <WaterPump.h>
-#include <GrowLight.h>
-#include <Fan.h>
-
-GrowLight g(8, 1000);
-WaterPump w(9, 1000);
-Fan *f[2];
 int num1 = 0;
 int num2 = 0;
 short denom1 = 0;
@@ -14,9 +7,7 @@ double movingAv2 = 0;
 int track = 0;
 
 void setup() {
-  f[0] = new Fan(10, 2000);
-  f[1] = new Fan(11, 2000);
-  Serial.begin(9600);
+
 }
 
 void loop() {
