@@ -19,8 +19,11 @@ class WaterSensor {
     public:
         WaterSensor(char digPinNum, anPinNum);
         short poll();   //initiate the process of reading the sensor
+        short getLastRawReading();
+    private:
         void on();  //Vcc is on
         void off(); //Vcc is off
+
 };
 #endif
 /*
