@@ -4,6 +4,8 @@ WaterSensor::WaterSensor(char digPinNum, char anPinNum) {
     digitalPinNumber = digPinNum;
     analogPinNumber = anPinNum;
     pinState = false;
+    pinMode(digitalPinNumber, OUTPUT);
+
 }
 
 void WaterSensor::on() {
@@ -27,7 +29,7 @@ short WaterSensor::poll() {
         if(millis() > stopTime) {   //if the minimum stabilizing time has passed, then do the reading
             lastRawReading = (short)analogRead(analogPinNumber);
             this->off();
-            return readValue;
+            return lastRawReading;
         }
         else return -1;
     }

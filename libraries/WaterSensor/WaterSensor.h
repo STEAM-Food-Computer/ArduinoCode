@@ -17,7 +17,7 @@ class WaterSensor {
     long stopTime;
 
     public:
-        WaterSensor(char digPinNum, anPinNum);
+        WaterSensor(char digPinNum, char anPinNum);
         short poll();   //initiate the process of reading the sensor
         short getLastRawReading();
     private:

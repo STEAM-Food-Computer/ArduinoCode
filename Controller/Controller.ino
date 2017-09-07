@@ -1,3 +1,4 @@
+#include <WaterSensor.h>
 #include <WaterPump.h>
 #include <GrowLight.h>
 #include <Fan.h>
