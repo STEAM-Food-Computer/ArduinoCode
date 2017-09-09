@@ -1,46 +1,23 @@
 #include <WaterSensor.h>
+#include <WateringApparatus.h>
 #include <WaterPump.h>
 #include <GrowLight.h>
 #include <Fan.h>
 
 GrowLight g(8, 1000);
-WaterPump w(9, 1000);
-Fan *f[2];
-int num1 = 0;
-int num2 = 0;
-short denom1 = 0;
-short denom2 = 0;
-double movingAv1 = 0;
-double movingAv2 = 0;
-int track = 0;
+WaterPump *w = new WaterPump(9, 1000);
+WaterSensor *s[2];
+
 
 void setup() {
-  f[0] = new Fan(10, 2000);
-  f[1] = new Fan(11, 2000);
-  Serial.begin(9600);
+  s[0] = new WaterSensor(10, 1);
+  s[1] = new WaterSensor(11, 2);
+  WateringApparatus::addSensor((*s)[0]);
+  WateringApparatus::addSensor((*s)[1]);
+  WateringApparatus::addWaterPump(*w);
+
 }
 
 void loop() {
-  /*
-  g.strobe();
-  w.strobe();
-  for(int i = 0; i < sizeof(f); i++)
-    f[i]->strobe();*/
-  if(millis()%500 == 0 && track++%4 == 0) {
-    
-    int input = analogRead(0);
-    num1 += input;
-    movingAv1 = ((double)num1)/((double)(++denom1));
-    Serial.print("Sensor 1 Average: "); Serial.println(input);
-
-    
-    input = analogRead(1);
-    num2 += input;
-    movingAv2 = ((double)num2)/((double)(++denom2));
-    Serial.print("Sensor 2 Average: "); Serial.println(input);
-
-
-    //Serial.print("Sensor 1 Average: "); Serial.println((int)movingAv1);
-    //Serial.print("Sensor 2 Average: "); Serial.println((int)movingAv2);
-  }
+ WateringApparatus::pump();
 }
