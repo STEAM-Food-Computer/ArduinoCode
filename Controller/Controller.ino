@@ -10,12 +10,12 @@ WaterSensor *s[2];
 
 
 void setup() {
-  s[0] = new WaterSensor(10, 1);
-  s[1] = new WaterSensor(11, 2);
+  s[0] = new WaterSensor(12, 0);
+  s[1] = new WaterSensor(13, 1);
+  Serial.begin(9600);
   WateringApparatus::addSensor(*s[0]);
   WateringApparatus::addSensor(*s[1]);
   WateringApparatus::addWaterPump(w);
-  WateringApparatus::pump();
 
 }
 

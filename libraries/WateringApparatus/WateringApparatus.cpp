@@ -13,6 +13,7 @@ static short* WateringApparatus::sensorValues = NULL;
 
 
 static void WateringApparatus::addWaterPump(WaterPump& wPump) {
+    Serial.println("Adding water pump" );
     waterPump = &wPump;
 }
 
@@ -24,6 +25,7 @@ static void WateringApparatus::addSensor(WaterSensor& wSensor) {
     temp[numOfSensors-1] = &wSensor;
     delete[] sensorList;
     sensorList = temp;
+    Serial.println("Adding sensor" );
     
 }
 
@@ -79,6 +81,8 @@ static void WateringApparatus::readAllSensors() {
                 temp += (float)sensorValues[i];
             }
 
+            Serial.print("Sensor 1: "); Serial.println(sensorValues[0]);
+            Serial.print("Sensor 2: "); Serial.println(sensorValues[1]);
             temp /= numOfSensors;
             allSensorAverage = (short)temp;
             isReading = false;
@@ -112,9 +116,11 @@ static long timeToTurnOffPump = 9223372036854775807;
 
     if(isInInterval) {
     readAllSensors();
+    //Serial.println("reading the sensors");
     if(allSensorAverage != 0 && sensorValues == NULL) {
+        Serial.print("first sensor value: "); Serial.println(allSensorAverage);
         currentMoisture = controlModelOutput(allSensorAverage);
-        if(currentMoisture < desiredMoisture)
+        if(!(currentMoisture < desiredMoisture))
             waterPump->on();
         isInInterval = false;
         timePassed = millis() + pollingInterval - 20000;
