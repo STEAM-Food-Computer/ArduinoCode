@@ -1,9 +1,8 @@
 #include "WaterPump.h"
 
 
-WaterPump::WaterPump(char pinNum, int _interval) {
+WaterPump::WaterPump(char pinNum, int _interval) : pinNumber(pinNum){
     interval = _interval;
-    pinNumber = pinNum;
     pinMode(pinNumber, OUTPUT);
     digitalWrite(pinNumber, LOW);
     pinState = false;
@@ -13,6 +12,7 @@ WaterPump::WaterPump(char pinNum, int _interval) {
 void WaterPump::on() {
     digitalWrite(pinNumber, HIGH);
     pinState = true;
+    Serial.println("WaterPump turning on." );
 }
 
 void WaterPump::off() {

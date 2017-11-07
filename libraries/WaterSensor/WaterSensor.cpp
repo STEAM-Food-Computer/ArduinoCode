@@ -1,8 +1,6 @@
 ﻿#include "WaterSensor.h"
 
-WaterSensor::WaterSensor(char digPinNum, char anPinNum) {
-    digitalPinNumber = digPinNum;
-    analogPinNumber = anPinNum;
+WaterSensor::WaterSensor(char digPinNum, char anPinNum) : digitalPinNumber(digPinNum), analogPinNumber(anPinNum) {
     pinState = false;
     pinMode(digitalPinNumber, OUTPUT);
 

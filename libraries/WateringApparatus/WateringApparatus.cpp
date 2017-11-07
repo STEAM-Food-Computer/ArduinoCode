@@ -120,7 +120,7 @@ static long timeToTurnOffPump = 9223372036854775807;
     if(allSensorAverage != 0 && sensorValues == NULL) {
         Serial.print("first sensor value: "); Serial.println(allSensorAverage);
         currentMoisture = controlModelOutput(allSensorAverage);
-        if(!(currentMoisture < desiredMoisture))
+        if((currentMoisture < desiredMoisture))
             waterPump->on();
         isInInterval = false;
         timePassed = millis() + pollingInterval - 20000;

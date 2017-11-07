@@ -9,8 +9,8 @@
 
 class WaterSensor {
 
-    char digitalPinNumber;  //keeps track of the Vcc pin connected to the particular sensor
-    char analogPinNumber;   //keeps track of the pin the sensor is read from
+    const char digitalPinNumber;  //keeps track of the Vcc pin connected to the particular sensor
+    const char analogPinNumber;   //keeps track of the pin the sensor is read from
     short lastRawReading;
     const short stabilizingInterval = 20000;    //time it takes for sensor reading to stabilize
     bool pinState;  //keep track of if the pin is high or low

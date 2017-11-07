@@ -12,7 +12,7 @@ class WaterPump {
     int interval;
     unsigned long stopTime; //millis() rolls over every 50 days watch out
     bool pinState;
-    char pinNumber;
+    const char pinNumber;
 
 public:
     WaterPump(char pinNum, int _interval);

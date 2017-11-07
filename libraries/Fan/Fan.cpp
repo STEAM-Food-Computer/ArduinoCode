@@ -1,7 +1,6 @@
 #include <Fan.h>
 
-Fan::Fan(char pinNum, int _interval) {
-    interval = _interval;
+Fan::Fan(char pinNum) {
     pinNumber = pinNum;
     pinMode(pinNumber, OUTPUT);
     digitalWrite(pinNumber, LOW);
@@ -19,14 +18,3 @@ void Fan::off() {
     pinState = false;
 }
 
-void Fan::changeInterval(int newInterval) {
-    interval = newInterval;
-}
-
-void Fan::strobe() {
-    if (stopTime <= millis()) {
-        if(pinState) this->off();
-        else this->on();
-        stopTime = millis() + interval;
-    }
-}
