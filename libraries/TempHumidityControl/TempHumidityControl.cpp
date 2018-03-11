@@ -11,6 +11,9 @@ static char TempHumidityControl::numOfSensors = 0;
 static char TempHumidityControl::numOfFans = 0;
 
 
+
+static double TempHumidityControl::getTempAverage() {return measuredTempAverage;}
+static double TempHumidityControl::getHumidityAverage() {return measuredHumidityAverage;}
 static void TempHumidityControl::addSensor(HumidThermoSensor& sensor) {
     HumidThermoSensor **temp = new HumidThermoSensor*[++numOfSensors];
     for (char i = 0; i < numOfSensors - 1; i++) {

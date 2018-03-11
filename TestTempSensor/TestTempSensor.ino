@@ -16,7 +16,6 @@ if (millis() > readVal) {
   int chk = DHT.read11(DHT11_PIN);
   Serial.print("Temperature: "); Serial.println(DHT.temperature);
   Serial.print("Humidity: "); Serial.println(DHT.humidity);
-  Serial.print(x);
   readVal = millis() + 4000;
 }
 

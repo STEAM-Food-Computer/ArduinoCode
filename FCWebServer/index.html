@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Testing Socket.io</title>
+  </head>
+  <body>
+    <h1 id='socket'>not connected</h1>
+    <p id='temperature'> </p>
+    <p id='humidity'> </p>
+    <p id='watersensor'> </p>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+
+      socket.on('connect', function(){
+        document.getElementById('socket').innerHTML = 'connected to the server';
+        var a = 56.77;
+        var b = 432.90543;
+          var longNum = new Float64Array(8);
+          longNum = a;
+
+          socket.emit('sendDataToServer', longNum);
+      });
+
+      socket.on('sendDataToWebPage', function(info){
+        document.getElementById('temperature').innerHTML = 'Temperature: ' + (info.temperature).toFixed(2) + '%';
+        document.getElementById('humidity').innerHTML = 'Humidity: ' + (info.humidity).toFixed(2) + '%';
+        document.getElementById('watersensor').innerHTML = 'WaterSensor: ' + (info.watersensor).toFixed(2) + '%';
+      });
+
+      socket.on('disconnected',function(){
+        document.getElementById('socket').innerHTML = 'disconnected';
+      });
+
+    </script>
+  </body>
+</html>

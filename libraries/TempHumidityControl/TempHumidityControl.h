@@ -28,6 +28,8 @@ public:
     static void updateSensorValues(); //gets updated values from the temp/humidity sensors (do not poll more than once every two seconds)
     static void setDesiredTemp(double temp);
     static void setDesiredHumidity(double humidity);
+    static double getTempAverage();
+    static double getHumidityAverage();
     static void regulate();
 
     

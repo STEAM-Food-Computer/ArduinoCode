@@ -1,8 +1,7 @@
 #include "WaterPump.h"
 
 
-WaterPump::WaterPump(char pinNum, int _interval) : pinNumber(pinNum){
-    interval = _interval;
+WaterPump::WaterPump(char pinNum) : pinNumber(pinNum){
     pinMode(pinNumber, OUTPUT);
     digitalWrite(pinNumber, LOW);
     pinState = false;
@@ -20,14 +19,4 @@ void WaterPump::off() {
     pinState = false;
 }
 
-void WaterPump::changeInterval(int newInterval) {
-    interval = newInterval;
-}
 
-void WaterPump::strobe() {
-    if (stopTime <= millis()) {
-        if(pinState) this->off();
-        else this->on();
-        stopTime = millis() + interval;
-    }
-}

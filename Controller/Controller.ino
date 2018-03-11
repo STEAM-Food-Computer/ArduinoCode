@@ -9,7 +9,7 @@
 
 HumidThermoSensor* tr = new HumidThermoSensor(11);
 GrowLight g(8, 1000);
-WaterPump w(9, 1000);
+WaterPump w(9);
 WaterSensor *s[2];
 
 
@@ -26,4 +26,5 @@ void setup() {
 
 void loop() {
  WateringApparatus::pump();
+ TempHumidityControl::regulate();
 }
